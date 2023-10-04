@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "51674362520",
+    "firebase_url": "https://digital-workspace-98717-default-rtdb.firebaseio.com",
+    "project_id": "digital-workspace-98717",
+    "storage_bucket": "digital-workspace-98717.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51674362520:android:004f448e95b4562021d6ed",
+        "android_client_info": {
+          "package_name": "com.example.firebase_digital_workspace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNE6Rz01Vl-k3YeEKuAb2sRg37chEUb9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
