@@ -42,34 +42,67 @@ class GoogleSignInOperation {
     });
   }
 }
+
+abstract class INavigateUser {
+  navigateUserWithPop(Widget pageName, BuildContext context);
+  navigateUserWithoutPop(Widget pageName, BuildContext context);
+}
+
+class NavigateUser extends INavigateUser {
+  @override
+  navigateUserWithPop(Widget pageName, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => pageName,
+      ),
+    );
+  }
+
+  @override
+  navigateUserWithoutPop(Widget pageName, BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => pageName,
+      ),
+    );
+  }
+  navigateWithInformation(String stringPathNameForScrren, BuildContext context,Map informationToCarry){
+    Navigator.pushNamed(context, stringPathNameForScrren,arguments: informationToCarry);
+  }
+}
+
 class AuthManager {
   IAuthOperation? _iAuthOperation;
-  AuthManager(IAuthOperation iAuthOperation){
-    this._iAuthOperation=iAuthOperation;
+  AuthManager(IAuthOperation iAuthOperation) {
+    this._iAuthOperation = iAuthOperation;
   }
-  void createUserEmailAndPassword(String userEmail,String userPassword){
+  void createUserEmailAndPassword(String userEmail, String userPassword) {
     _iAuthOperation?.createUserEmailAndPassword(userEmail, userPassword);
   }
 }
+
 
 class AuthOperation extends IAuthOperation {
   @override
   createUserEmailAndPassword(String userEmail, String userPassword) async {
     try {
-
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
-
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        if (user != null) {
+          print(user.uid);
+          print(user.email);
+          print(user.displayName);
+        }
+      });
     } on FirebaseAuthException catch (e) {
-
       handleWeekPasswordException(e);
     } catch (e) {
-
       handleLastCatchException(e);
-
     }
   }
 
@@ -88,4 +121,24 @@ class AuthOperation extends IAuthOperation {
 
 abstract class IAuthOperation {
   createUserEmailAndPassword(String userEmail, String userPassword);
+}
+abstract class IUserInformation{
+  Map<dynamic,dynamic> getLoggedInformation();
+}
+class UserInformation extends IUserInformation{
+  @override
+  Map getLoggedInformation() {
+    Map informationMap = Map();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+        if (user != null) {
+          informationMap['uid']=user.uid;
+          informationMap['email']=user.email;
+          informationMap['displayName']= user.displayName;
+          
+        }
+      
+      });
+    return informationMap;
+  }
+
 }

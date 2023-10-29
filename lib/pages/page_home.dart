@@ -1,39 +1,30 @@
-import 'package:firebase_digital_workspace/services/service_google.dart';
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
+//    final Map<dynamic,dynamic> args = ModalRoute.of(context)!.settings.arguments as Map<String,dynamic>;
+//     final String receivedData1 = args['data1'];
+// final String receivedData2 = args['data2'];
+// final String receivedData3 = args['data3']; // continue next time in here
+
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  GoogleSignInOperation googleSignInOperation = new GoogleSignInOperation();
-
-  @override
   Widget build(BuildContext context) {
+   
+
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Google Login Page"),
-        ),
-        body: Center(
-          child: MaterialButton(
-            onPressed: () async {
-              // final userCredit =
-              //     await googleSignInOperation.signInWithGoogle(context);
-              // googleSignInOperation.navigateToLoginPage(userCredit, context);
-              //GoogleSignInOperation.lookTheUserAuthState();
-            },
-            child: Row(
-              children: [
-                Text(
-                  "Sign in with google",
-                ),
-                Icon(Icons.login),
-              ],
-            ),
-          ),
-        ));
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Home Page"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Home Page")
+        ],
+      ),
+    );
   }
 }

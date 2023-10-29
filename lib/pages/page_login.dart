@@ -1,3 +1,4 @@
+import 'package:firebase_digital_workspace/pages/page_home.dart';
 import 'package:firebase_digital_workspace/services/service_google.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,8 @@ class LoginPage extends StatelessWidget with FormMixin {
   final _controllerPassword = TextEditingController();
 
   AuthManager authManager = AuthManager(AuthOperation());
+  NavigateUser navigateUser = NavigateUser(); 
+  UserInformation _userInformation = new UserInformation();
 
   LoginPage({
     super.key,
@@ -66,10 +69,17 @@ class LoginPage extends StatelessWidget with FormMixin {
             ),
             ElevatedButton(
               onPressed: () {
-                authManager.createUserEmailAndPassword(
+               authManager.createUserEmailAndPassword(
                   _controllerEmail.text.toString(),
                   _controllerPassword.text.toString(),
                 );
+                navigateUser.navigateWithInformation('/home', context, _userInformation.getLoggedInformation());
+                //navigateUser.navigateUserWithoutPop(HomePage(), context);
+                
+
+                // print(credential.user?.email);
+                // print(credential.user?.phoneNumber);
+                // print(credential.user?.uid);
               },
               child: Row(
                 children: [Icon(Icons.add)],
