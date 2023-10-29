@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_digital_workspace/pages/page_home.dart';
+import 'package:firebase_digital_workspace/pages/page_login.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => LoginPage(),
       ),
     );
   }

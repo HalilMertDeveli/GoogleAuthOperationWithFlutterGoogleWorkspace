@@ -20,10 +20,10 @@ class _HomePageState extends State<HomePage> {
         body: Center(
           child: MaterialButton(
             onPressed: () async {
-              final userCredit =
-                  await googleSignInOperation.signInWithGoogle(context);
-              googleSignInOperation.navigateToLoginPage(userCredit, context);
-              GoogleSignInOperation.lookTheUserAuthState();
+              // final userCredit =
+              //     await googleSignInOperation.signInWithGoogle(context);
+              // googleSignInOperation.navigateToLoginPage(userCredit, context);
+              //GoogleSignInOperation.lookTheUserAuthState();
             },
             child: Row(
               children: [
