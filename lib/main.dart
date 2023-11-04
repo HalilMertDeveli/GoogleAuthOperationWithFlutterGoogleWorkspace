@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      home: const SplashScreen(),
       routes: {
         '/': (context)=>SplashScreen(),
         '/login':(context)=>LoginPage(),

@@ -1,5 +1,7 @@
-import 'package:firebase_digital_workspace/pages/page_home.dart';
+import 'package:firebase_digital_workspace/services/service_auth.dart';
 import 'package:firebase_digital_workspace/services/service_google.dart';
+import 'package:firebase_digital_workspace/services/service_navigation.dart';
+import 'package:firebase_digital_workspace/services/service_user_information.dart';
 import 'package:flutter/material.dart';
 
 // class LoginPage extends StatefulWidget {
@@ -33,11 +35,12 @@ import 'package:flutter/material.dart';
 // }
 
 class LoginPage extends StatelessWidget with FormMixin {
+  
   final _controllerEmail = TextEditingController();
   final _controllerPassword = TextEditingController();
 
   AuthManager authManager = AuthManager(AuthOperation());
-  NavigateUser navigateUser = NavigateUser(); 
+  ServiceNavigation navigateUser = ServiceNavigation(); 
   UserInformation _userInformation = new UserInformation();
 
   LoginPage({
